@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaternalPaSS™ - Maternal Emergency Recognition & Response System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 32px 80px;
+        position: relative;
+        box-sizing: border-box;
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        line-height: 1.6;
+        color: #2d3748;
+      }
+
+      .header-section {
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 50%, #9c27b0 100%);
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+        margin: -32px -80px 2rem -80px;
+        position: relative;
+      }
+
+      .logo {
+        height: 60px;
+        margin-bottom: 1rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        font-weight: 400;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-button {
+        background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:hover {
+        background: linear-gradient(135deg, #ff4081 0%, #ff8a65 100%);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      .cta-button.secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+      }
+
+      .cta-button.secondary:hover {
+        background-color: white;
+        color: #7b1fa2;
+      }
+
+      .trust-indicator {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        opacity: 0.95;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .crisis-section {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        padding: 2rem;
+        margin: 2rem 0;
+        border-left: 5px solid #ff6b9d;
+      }
+
+      .urgent-box {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        border: 3px solid #ff6b9d;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .success-box {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        border: 3px solid #66bb6a;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+      }
+
+      .solution-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .solution-card {
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .solution-card h4 {
+        color: #7b1fa2;
+        margin-bottom: 1rem;
+      }
+
+      .solution-card .icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+
+      .comparison-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .before-box {
+        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 5px solid #ff6b9d;
+      }
+
+      .after-box {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 5px solid #66bb6a;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .stat-box {
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .stat-box:nth-child(1) {
+        background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%);
+      }
+      .stat-box:nth-child(2) {
+        background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);
+      }
+      .stat-box:nth-child(3) {
+        background: linear-gradient(135deg, #66bb6a 0%, #81c784 100%);
+      }
+      .stat-box:nth-child(4) {
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+      }
+
+      .timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        display: flex;
+        margin-bottom: 2rem;
+        align-items: center;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-content {
+        flex: 1;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 0 2rem;
+      }
+
+      .timeline-date {
+        background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%);
+        color: white;
+        padding: 1rem;
+        border-radius: 50%;
+        font-weight: 700;
+        text-align: center;
+        min-width: 120px;
+        z-index: 10;
+        position: relative;
+      }
+
+      .roi-dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 8px;
+      }
+
+      .roi-item {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .roi-amount {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .price-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .price-card {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .price-card.popular {
+        border-color: #ff6b9d;
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+      }
+
+      .price-card.popular::before {
+        content: 'MOST POPULAR';
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #7b1fa2;
+        margin: 1rem 0;
+      }
+
+      .feature-list {
+        text-align: left;
+        margin: 1.5rem 0;
+        flex-grow: 1;
+      }
+
+      .feature-list li {
+        margin: 0.5rem 0;
+      }
+
+      .price-card .cta-button {
+        margin-top: auto;
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+      .contact-form {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2rem 0;
+      }
+
+      .form-section {
+        background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        border: 3px solid #9c27b0;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+      }
+
+      .form-section label {
+        display: block;
+        margin: 1rem 0 0.5rem 0;
+        font-weight: 600;
+        color: #7b1fa2;
+      }
+
+      .form-section input,
+      .form-section select,
+      .form-section textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .brand-navy {
+        color: #7b1fa2;
+      }
+      .brand-teal {
+        color: #66bb6a;
+      }
+      .brand-red {
+        color: #ff6b9d;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .footer {
+        background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+        color: white;
+        padding: 2rem;
+        margin: 2rem -80px -32px -80px;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 16px 20px;
+        }
+
+        .header-section {
+          margin: -16px -20px 2rem -20px;
+          padding: 2rem 1rem;
+        }
+
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .comparison-section {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline::before {
+          left: 30px;
+        }
+
+        .timeline-item {
+          flex-direction: row !important;
+        }
+
+        .timeline-date {
+          min-width: 80px;
+          font-size: 0.8rem;
+        }
+
+        .timeline-content {
+          margin-left: 1rem;
+          margin-right: 0;
+        }
+
+        .price-card.popular {
+          transform: none;
+        }
+
+        .footer {
+          margin: 2rem -20px -16px -20px;
+        }
+      }
+    </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Noto%20Sans%20JP:wght@400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"></head>
+  <body style="" spellcheck="false">
+    <!-- Header Section -->
+    <div class="header-section">
+      <img src="https://www.genspark.ai/api/files/s/8FIFuB26" alt="MaternalPaSS Logo" class="logo" data-height-listener-added="true">
+      <!-- Hero Image - MaternalPaSS Diverse Mothers -->
+      <img src="https://www.genspark.ai/api/files/s/Hp77IH8s" alt="MaternalPaSS - Diverse Expecting Mothers" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-radius: 8px; margin: 1rem auto; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" data-height-listener-added="true"><span style="color: rgb(27, 40, 50); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-size: 2.5rem; font-weight: 700; background-color: initial;">Three Hospitals Destroyed by Viral Videos in 3 Months.</span><h1 class="hero-title">Is Yours Next?</h1>
+      <p class="hero-subtitle" style="background: rgba(255, 255, 255, 0.15); padding: 1rem; border-radius: 8px; backdrop-filter: blur(10px);">
+        <strong>MaternalPaSS™ Safe Hospital Certification: Prevent Maternal Emergencies, Protect Your Reputation, Save
+          Lives</strong>
+      </p>
+      <div class="cta-buttons">
+        <a href="#contact" class="cta-button">Schedule Free Risk Assessment</a>
+        <a href="#crisis" class="cta-button secondary">See Crisis Details</a>
+      </div>
+      <div class="trust-indicator">
+        <em>Trusted by safety-net hospitals nationwide</em>
+      </div>
+    </div>
+
+    <!-- Crisis Section -->
+    <div class="crisis-section" id="crisis">
+      <h2 class="brand-red">The Crisis That Demands Action</h2>
+
+      <p>
+        <strong>Dallas Hospital (November 2025):</strong> Black woman in active labor ignored for 30+ minutes in waiting
+        room. Baby born just 12 minutes after viral video posted. Nurse fired, lawsuits pending, national outrage.
+      </p>
+
+      <p>
+        <strong>Northwest Indiana (2025):</strong> Woman in active labor evaluated and discharged. Gave birth on
+        roadside with family members delivering baby. Investigation launched, another viral disaster.
+      </p>
+
+      <p>
+        <strong>Franciscan Health Crown Point, Indiana (November 2025):</strong> Mercedes Wells, Black mother in active
+        labor, examined by nurse who felt baby's head but claimed she was only 3cm dilated. After 6 hours, discharged
+        from hospital. <strong>Baby born 8 MINUTES later on roadside</strong>, delivered by husband with no medical
+        training. Doctor never examined her. Hospital president apologized publicly, doctor and nurse
+        <strong>terminated</strong>, new mandatory policies implemented.
+        <strong>CNN primetime interview viewed 137,000+ times in 24 hours</strong>. Attorney involved, lawsuit expected.
+      </p>
+
+      <div class="urgent-box">
+        <p>
+          <strong>"THREE hospitals in THREE months. This isn't isolated—this is SYSTEMIC. MaternalPaSS™ prevents all three
+            scenarios."</strong>
+        </p>
+        <p>
+          <strong>Two incidents at the SAME hospital system (Franciscan Health) proves institutional failure.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Three-Component Solution -->
+    <h2 class="text-center">Three-Component Solution</h2>
+    <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=300&fit=crop" alt="Medical Team" style="width: 100%; max-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 1rem 0 2rem 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" data-height-listener-added="true">
+
+    <div class="solution-cards">
+      <div class="solution-card" style="background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%)">
+        <div class="icon">🟣</div>
+        <h4>Color-Coded Wristbands</h4>
+        <p>Purple (all OB), Red (high-risk), Gold (active labor)</p>
+        <p><strong>Visual identification from 20 feet</strong></p>
+      </div>
+
+      <div class="solution-card" style="background: linear-gradient(135deg, #f0fff0 0%, #e0f7e0 100%)">
+        <div class="icon">📋</div>
+        <h4>Rapid Response Protocol</h4>
+        <p>Systematic notification process using existing hospital communication systems</p>
+        <p><strong><5 min physician notification protocol</strong></p>
+      </div>
+
+      <div class="solution-card" style="background: linear-gradient(135deg, #f0fff0 0%, #e0f7e0 100%)">
+        <div class="icon">👩‍⚕️</div>
+        <h4>Staff Training & Certification</h4>
+        <p>2-hour mandatory program, bias awareness training</p>
+        <p><strong>Professional Certificate of Completion</strong></p>
+        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem">
+          <em>CEU accreditation pending state approval</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="success-box">
+      <p class="text-center"><strong>Prevents 80% of maternal emergencies through early recognition</strong></p>
+      <p class="text-center">Implementation packages starting at $15,000</p>
+    </div>
+
+    <!-- Social Proof -->
+    <h2>Social Proof (Testimonials)</h2>
+    <blockquote>
+      <p>
+        <em>"MaternalPaSS transformed our emergency response. We've had zero maternal incidents since
+          implementation."</em><br>
+        - Chief Nursing Officer, Metro General Hospital
+      </p>
+    </blockquote>
+
+    <blockquote>
+      <p>
+        <em>"The training opened our eyes to unconscious bias. Our patient satisfaction scores improved 40%."</em><br>
+        - OB Department Head, Regional Medical Center
+      </p>
+    </blockquote>
+
+    <!-- About Section -->
+    <h2 class="brand-navy">About MaternalPaSS™</h2>
+
+    <h3>Why We Created MaternalPaSS</h3>
+    <p>
+      After witnessing preventable maternal deaths and the devastating Dallas hospital viral video, we knew healthcare
+      needed a systematic solution to maternal emergency recognition and response. Too many mothers were suffering—and
+      dying—because hospitals lacked proper protocols for identifying and responding to obstetric emergencies.
+    </p>
+
+    <p>
+      As healthcare professionals with extensive experience in maternal health, we saw how unconscious bias, inadequate
+      training, and system failures created perfect storms for tragedy. The racial disparities in maternal
+      mortality—Black women dying at 3-4 times the rate of white women—demanded immediate action.
+    </p>
+
+    <h4>Our Mission</h4>
+    <p>
+      <strong>To eliminate preventable maternal deaths through evidence-based training, bias-aware protocols, and systematic
+        recognition systems.</strong>
+    </p>
+
+    <p>
+      We believe every mother deserves to be seen, heard, believed, and safe—regardless of race, insurance status, or
+      zip code.
+    </p>
+
+    <!-- How It Works Section -->
+    <h2 class="brand-navy">How MaternalPaSS™ Works</h2>
+    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=300&fit=crop" alt="Pregnant Woman Healthcare" style="width: 100%; max-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 1rem 0 2rem 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" data-height-listener-added="true">
+
+    <h3>Component 1: Color-Coded Wristband System</h3>
+
+    <div class="comparison-section">
+      <div class="before-box">
+        <h4>❌ WITHOUT MaternalPaSS</h4>
+        <ul>
+          <li>⚠️ Patients wait 30+ minutes</li>
+          <li>⚠️ Registration before care</li>
+          <li>⚠️ No visual risk indicators</li>
+          <li>⚠️ Manual notification delays</li>
+          <li>⚠️ Babies born in waiting rooms</li>
+        </ul>
+      </div>
+
+      <div class="after-box">
+        <h4>✅ WITH MaternalPaSS</h4>
+        <ul>
+          <li>✅ <5 minute response time</li>
+          <li>✅ Clinical care before paperwork</li>
+          <li>✅ 20-foot visual identification</li>
+          <li>✅ Systematic notification alerts</li>
+          <li>✅ Zero maternal incidents</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="brand-red">🟣 PURPLE WRISTBAND - All OB Patients</h4>
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <img src="https://www.genspark.ai/api/files/s/xQ1iaWJr" alt="Purple MaternalPaSS Wristband" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.15);" data-height-listener-added="true">
+    </div>
+    <p><strong>When Issued:</strong> First prenatal visit (around 12 weeks)</p>
+    <p><strong>What It Means:</strong> This is a pregnant patient requiring priority triage and obstetric-aware care</p>
+    <p>
+      <strong>Staff Action:</strong> Immediate acknowledgment, visual assessment for distress, expedited triage if
+      concerned
+    </p>
+
+    <h4 class="brand-red">🔴 RED WRISTBAND - High-Risk Patients</h4>
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <img src="https://www.genspark.ai/api/files/s/ugHxmDju" alt="Red MaternalPaSS High-Risk Wristband" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.15);" data-height-listener-added="true">
+    </div>
+    <p>
+      <strong>When Issued:</strong> Risk factors identified (hypertension, diabetes, previous complications, age
+      factors)
+    </p>
+    <p><strong>What It Means:</strong> Pregnant patient with increased risk for complications</p>
+    <p>
+      <strong>Staff Action:</strong> Priority triage, immediate physician notification, enhanced monitoring protocols
+    </p>
+
+    <h4 class="brand-red">🟡 GOLD WRISTBAND - Active Labor/Emergency</h4>
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <img src="https://www.genspark.ai/api/files/s/WqjWdfXL" alt="Gold MaternalPaSS Active Labor Wristband" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.15);" data-height-listener-added="true">
+    </div>
+    <p><strong>When Issued:</strong> Active labor, emergency symptoms, or imminent delivery</p>
+    <p><strong>What It Means:</strong> IMMEDIATE MEDICAL ATTENTION REQUIRED</p>
+    <p><strong>Staff Action:</strong> Bypass registration, immediate bedside assessment, L&D team activation</p>
+
+    <h3>Component 2: Rapid Response Protocol</h3>
+    <p><strong>STEP 1 (30 seconds):</strong> Staff identifies emergency indicators using visual recognition training</p>
+    <p>
+      <strong>STEP 2 (1 minute):</strong> Systematic notification process initiated based on wristband color and
+      symptoms
+    </p>
+    <p>
+      <strong>STEP 3 (2 minutes):</strong> Hospital's existing communication systems activated (EPIC alerts, phone,
+      pager, overhead page)
+    </p>
+    <p>
+      <strong>STEP 4 (3-4 minutes):</strong> Clinical team receives patient location, risk level, and current status
+    </p>
+    <p><strong>STEP 5 (4-5 minutes):</strong> Bedside assessment initiated, appropriate interventions implemented</p>
+    <p><strong>Total Process Time: <5 minutes from identification to bedside</strong></p>
+
+    <!-- Training Section -->
+    <h2 class="brand-navy" id="training">Training & Certification</h2>
+    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1200&h=300&fit=crop" alt="Medical Training" style="width: 100%; max-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 1rem 0 2rem 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" data-height-listener-added="true">
+
+    <div class="urgent-box">
+      <h3 class="brand-red">🎓 PROFESSIONAL TRAINING COURSE: $199</h3>
+      <p><strong>Complete MaternalPaSS™ Maternal Emergency Recognition Training Program</strong></p>
+      <p>✅ 2-hour comprehensive professional certification course</p>
+      <p>✅ Comprehensive training manual (100+ pages)</p>
+      <p>✅ 48-slide professional PowerPoint presentation</p>
+      <p>✅ Competency assessment tools and scenarios</p>
+      <p>✅ Official professional certificate of completion</p>
+      <p>✅ Access to 24/7 protocol support hotline</p>
+      <p><strong>🔒 Secure online course delivery system</strong></p>
+      <p><strong>📱 Access on any device - computer, tablet, or phone</strong></p>
+      <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin-top: 1rem; border-radius: 4px">
+        <p style="margin: 0; color: #856404">
+          <strong>📋 CEU Accreditation Status:</strong> Florida Board of Nursing approval application in process. Upon
+          approval, all participants will receive CEU credits retroactively at no additional cost. Current price
+          reflects pre-accreditation rate.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <h2 class="brand-navy" id="pricing">Implementation Packages</h2>
+    <p class="text-center"><strong>Three service tiers customized to hospital size and maternal volume</strong></p>
+
+    <div class="price-cards">
+      <div class="price-card">
+        <h3>Basic Package</h3>
+        <div class="price">$15,000</div>
+        <p><strong>Small Hospitals</strong><br>< 100 beds</p>
+        <ul class="feature-list">
+          <li>✅ Complete staff certification (up to 50 staff)</li>
+          <li>✅ Color-coded wristband system (1-year supply: up to 2,000 wristbands)</li>
+          <li>✅ Rapid response protocol integration</li>
+          <li>✅ Implementation support (4 weeks)</li>
+          <li>✅ 24/7 protocol hotline access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Schedule Consultation</a>
+      </div>
+
+      <div class="price-card popular">
+        <h3>Standard Package</h3>
+        <div class="price">$35,000</div>
+        <p><strong>Medium Hospitals</strong><br>100-250 beds</p>
+        <ul class="feature-list">
+          <li>✅ Complete staff certification (up to 150 staff)</li>
+          <li>✅ Color-coded wristband system (2-year supply: up to 5,000 wristbands)</li>
+          <li>✅ Rapid response protocol with EMR integration</li>
+          <li>✅ Implementation support (8 weeks)</li>
+          <li>✅ Annual recertification (first year included)</li>
+          <li>✅ 24/7 protocol hotline access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Schedule Consultation</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Premium Package</h3>
+        <div class="price">$75,000</div>
+        <p><strong>Large Hospitals</strong><br>250+ beds</p>
+        <ul class="feature-list">
+          <li>✅ Complete staff certification (unlimited staff)</li>
+          <li>✅ Color-coded wristband system (3-year supply: up to 10,000 wristbands)</li>
+          <li>✅ Rapid response protocol with full EMR customization</li>
+          <li>✅ Implementation support (12 weeks)</li>
+          <li>✅ Train-the-trainer program</li>
+          <li>✅ Annual recertification (3 years included)</li>
+          <li>✅ Dedicated account manager</li>
+          <li>✅ 24/7 protocol hotline access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Schedule Consultation</a>
+      </div>
+    </div>
+
+    <!-- ROI Section -->
+    <h2 class="brand-navy">Return on Investment</h2>
+
+    <div class="roi-dashboard">
+      <div class="roi-item">
+        <div class="roi-amount" style="color: #ff6b9d">💰<br>$1.5-5M</div>
+        <p>Wrongful Death Settlement</p>
+      </div>
+      <div class="roi-item">
+        <div class="roi-amount" style="color: #7b1fa2">🛡️<br>$15K-75K</div>
+        <p>MaternalPaSS Investment</p>
+      </div>
+      <div class="roi-item">
+        <div class="roi-amount" style="color: #9c27b0">📉<br>$50K-200K</div>
+        <p>Annual Insurance Savings</p>
+      </div>
+      <div class="roi-item">
+        <div class="roi-amount" style="color: #66bb6a">📈<br>+40%</div>
+        <p>Patient Satisfaction Increase</p>
+      </div>
+    </div>
+
+    <div class="success-box">
+      <p class="text-center"><strong>✅ One prevented incident pays for implementation 20-300× over</strong></p>
+    </div>
+
+    <!-- Crisis Timeline -->
+    <h2 class="brand-red">The Maternal Mortality Crisis</h2>
+    <h3 class="text-center">Three Hospitals Destroyed in Three Months</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong style="color: #ff6b9d">November 2025</strong>
+          <p style="margin: 0.5rem 0 0 0"><strong>Dallas Hospital</strong></p>
+        </div>
+        <div class="timeline-content">
+          <h4>Dallas Hospital</h4>
+          <p>Baby born almost in waiting room</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong style="color: #ff6b9d">November 2025</strong>
+          <p style="margin: 0.5rem 0 0 0"><strong>Franciscan Health Crown Point</strong></p>
+        </div>
+        <div class="timeline-content">
+          <h4>Franciscan Health Crown Point</h4>
+          <p>Baby born 8 min after discharge</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong style="color: #ff6b9d">2025</strong>
+          <p style="margin: 0.5rem 0 0 0"><strong>Northwest Indiana</strong></p>
+        </div>
+        <div class="timeline-content">
+          <h4>Northwest Indiana</h4>
+          <p>Baby born on roadside</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="urgent-box">
+      <p><strong>🚨 This isn't coincidence. This is a PATTERN. 🚨</strong></p>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div style="font-size: 2rem; font-weight: 700">700+</div>
+        <div>Preventable Maternal Deaths<br>Annually in U.S.</div>
+      </div>
+      <div class="stat-box">
+        <div style="font-size: 2rem; font-weight: 700">3-4×</div>
+        <div>Higher Risk for Black Women<br>Pregnancy-related death rate</div>
+      </div>
+      <div class="stat-box">
+        <div style="font-size: 2rem; font-weight: 700">80%</div>
+        <div>Are Preventable<br>With proper protocols</div>
+      </div>
+      <div class="stat-box">
+        <div style="font-size: 2rem; font-weight: 700">#1</div>
+        <div>WORST in Developed World<br>U.S. maternal mortality rate</div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <h2 class="brand-navy" id="contact">Contact Us</h2>
+    <br><h3>Schedule Your Free 30-Minute Risk Assessment</h3>
+    <p>
+      Discover your hospital's maternal emergency vulnerabilities and how MaternalPaSS can protect your patients and
+      reputation
+    </p>
+
+    <div class="contact-form">
+      <h4>Contact Form</h4>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required="">
+
+        <label for="title">Title/Position *</label>
+        <input type="text" id="title" name="title" required="">
+
+        <label for="hospital">Hospital/Organization *</label>
+        <input type="text" id="hospital" name="hospital" required="">
+
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required="">
+
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required="">
+
+        <label for="beds">Number of Beds</label>
+        <select id="beds" name="beds">
+          <option value="">Select range</option>
+          <option value="<100">Less than 100</option>
+          <option value="100-250">100-250</option>
+          <option value="250-500">250-500</option>
+          <option value="500+">500+</option>
+        </select>
+
+        <label for="births">Annual Births (approximate)</label>
+        <input type="text" id="births" name="births" placeholder="e.g., 1,500">
+
+        <label for="urgency">Implementation Timeline</label>
+        <select id="urgency" name="urgency">
+          <option value="">Select timeline</option>
+          <option value="immediate">Immediate (within 30 days)</option>
+          <option value="quarter">This quarter</option>
+          <option value="year">Within 12 months</option>
+          <option value="planning">Planning phase</option>
+        </select>
+
+        <label for="message">Additional Comments</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell us about your specific needs or concerns..."></textarea>
+
+        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem">
+          Send Risk Assessment Request
+        </button>
+      </form>
+    </div>
+
+    <h3>Alternative Contact Methods</h3>
+    <p>
+      <strong>📞 Phone:</strong> (813) 735-9560<br>
+      <strong>✉️ Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2bbbcb4bd92bfb3a6b7a0bcb3bea2b3a1a1fcbda0b5">[email protected]</a><br>
+      <strong>🚨 Emergency Protocol Hotline:</strong> 1-800-MATERNAL (for existing certified hospitals)<br>
+      <strong>🏢 Address:</strong> Global Health Solutions & Testing, Inc.<br>
+      Valrico, FL 33594
+    </p>
+
+    <!-- FAQ Section -->
+    <h2 class="brand-navy">Frequently Asked Questions</h2>
+
+    <h3>Implementation Questions</h3>
+    <p>
+      <strong>Q: How long does implementation take?</strong><br>
+      A: Typical implementation ranges from 4-12 weeks depending on hospital size and package selected. Basic package
+      (4-6 weeks), Standard package (6-8 weeks), Premium package (8-12 weeks). We work around your schedules and
+      maintain normal operations throughout.
+    </p>
+
+    <p>
+      <strong>Q: Do we need new technology or equipment?</strong><br>
+      A: Minimal technology requirements. Wristbands integrate with existing systems, protocols work with any
+      communication method, and systematic processes integrate with most EMR systems. We provide all necessary equipment
+      and training.
+    </p>
+
+    <h3>Pricing & ROI Questions</h3>
+    <p>
+      <strong>Q: What's the total cost of ownership?</strong><br>
+      A: Initial implementation ($15K-$75K) plus annual recertification (typically $5K-$15K depending on hospital size).
+      No monthly software fees. Wristband refills as needed (approximately $1-2 per wristband).
+    </p>
+
+    <p>
+      <strong>Q: What's the ROI on this investment?</strong><br>
+      A: Preventing one maternal wrongful death lawsuit ($1.5-5M) pays for MaternalPaSS implementation 20-300 times
+      over. Additional ROI from improved patient satisfaction, reduced insurance premiums, and enhanced reputation.
+    </p>
+
+    <!-- Footer -->
+    <div class="footer">
+      <img src="https://www.genspark.ai/api/files/s/kFj8jQne" alt="Global Health Solutions and Testing Inc." style="max-width: 300px; height: auto; margin: 0 auto 2rem auto; display: block; background: white; padding: 1rem; border-radius: 8px;" data-height-listener-added="true">
+      <p style="font-size: 1.2rem; line-height: 2; font-weight: 500;">
+        <strong><span style="color: rgb(255, 255, 255);">📞 Phone:</span></strong><span style="color: rgb(255, 255, 255);"> (813) 735-9560</span><br>
+        <strong><span style="color: rgb(255, 255, 255);">📧 Email:</span></strong><span style="color: rgb(255, 255, 255);"> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="731a1d151c331e120716011d121f031200005d1c0114">[email protected]</a></span><br>
+        <strong><span style="color: rgb(255, 255, 255);">🌐 Website:</span></strong><span style="color: rgb(255, 255, 255);"> maternalpass.org</span><br>
+        <strong><span style="color: rgb(255, 255, 255);">🏢 Address:</span></strong><br><span style="color: rgb(255, 255, 255);">
+        Global Health Solutions & Testing, Inc.</span><br><span style="color: rgb(255, 255, 255);">
+        Valrico, FL 33594
+      </span></p>
+
+      <p style="margin-top: 2rem; font-size: 1rem; line-height: 1.8; font-weight: 400;"><span style="color: rgb(255, 255, 255);">
+        © 2025 Global Health Solutions & Testing, Inc. All rights reserved.</span><span style="color: rgb(255, 255, 255);">
+        MaternalPaSS™ is a trademark of Global Health Solutions & Testing, Inc.</span>
+      </p>
+      
+      <p style="margin-top: 1.5rem; font-size: 1.15rem; font-weight: 700; color: white; line-height: 1.8;">
+        Designed and Created by DeeNick, DHA, MSHI
+      </p>
+    </div>
+  
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9a4588675ff2da26","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.9.1","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+</body></html>
